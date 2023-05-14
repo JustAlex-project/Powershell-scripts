@@ -204,7 +204,8 @@ function selectionMain
 			Write-Host "BRAK MODULU. Rozpoczynam pobieranie"
 			Write-Warning 'Pobieranie modulu niemozliwe przy zdalnym uruchomieniu'
 			pause
-			 Robocopy "\\Sbopaltiris07\softwarelibrary\Oprogramowanie\MODULES\DellBIOSProvider"  "C:\Program Files\WindowsPowerShell\Modules\DellBIOSProvider" /E /r:3 /w:10 /MT:32
+			# wymaga podania lokalizacji plików
+			 #Robocopy "\\server\MODULES\DellBIOSProvider"  "C:\Program Files\WindowsPowerShell\Modules\DellBIOSProvider" /E /r:3 /w:10 /MT:32
 			
 			cls
 			Write-Host "powrot do menu"
@@ -413,9 +414,9 @@ function selectionMain
 	
 	function Check-Keys
 	{
-		
-		Write-Warning "Zapisywanie kluczy do [C:\BOP_Logs\BitlockerKeys.txt]"
-		Start-Transcript "C:\BOP_Logs\BitlockerKeys.txt" -Append |Out-Null
+		# zmienić ścieżke logów
+		Write-Warning "Zapisywanie kluczy do [C:\Logs\BitlockerKeys.txt]"
+		Start-Transcript "C:\Logs\BitlockerKeys.txt" -Append |Out-Null
 		(Get-BitLockerVolume -MountPoint C).KeyProtector
 		(Get-BitLockerVolume -MountPoint D).KeyProtector
 		Stop-Transcript | Out-Null
@@ -508,7 +509,7 @@ function selectionMain
 		Write-Host ""
 		Write-Host ""
 		Write-Host "     6: Sprawdz klucze"
-		Write-Warning "  Weryfikacja kluczy LOKALNIE. Skrypt dodatkowo zapisuje je w katalogu C:/BOP_Logs"
+		Write-Warning "  Weryfikacja kluczy LOKALNIE. Skrypt dodatkowo zapisuje je w katalogu C:/Logs"
 		Write-Host ""
 		Write-Host ""
 		Write-Host "     7: ODSZYFROWANIE"
